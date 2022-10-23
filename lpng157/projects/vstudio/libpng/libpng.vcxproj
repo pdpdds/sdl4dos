@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug Library|Win32">
-      <Configuration>Debug Library</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release Library|Win32">
-      <Configuration>Release Library</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
@@ -22,6 +14,7 @@
     <ProjectGuid>{D6973076-9317-4EF2-A0B8-B7A18AC0713E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>libpng</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="$(SolutionDir)\zlib.props" />
@@ -31,19 +24,9 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Library|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Library|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
@@ -53,14 +36,8 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug Library|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
-  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release Library|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -69,21 +46,13 @@
     </CustomBuildBeforeTargets>
     <TargetName>$(ProjectName)15</TargetName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Library|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-    <CustomBuildBeforeTargets />
-    <TargetName>$(ProjectName)15</TargetName>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <CustomBuildBeforeTargets>
     </CustomBuildBeforeTargets>
     <TargetName>$(ProjectName)15</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Library|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-    <CustomBuildBeforeTargets />
-    <TargetName>$(ProjectName)15</TargetName>
+    <OutDir>$(SolutionDir)library\</OutDir>
+    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -114,33 +83,6 @@
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Library|Win32'">
-    <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <WarningLevel>Level4</WarningLevel>
-      <MinimalRebuild>false</MinimalRebuild>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <Optimization>Disabled</Optimization>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
-      <PrecompiledHeaderFile>pngpriv.h</PrecompiledHeaderFile>
-      <BrowseInformation>true</BrowseInformation>
-      <CompileAs>CompileAsC</CompileAs>
-      <StringPooling>true</StringPooling>
-      <DisableSpecificWarnings>4996;4127</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ZLibSrcDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-    </Link>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
@@ -148,7 +90,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NO_CRT_STDIO_INLINE;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <PrecompiledHeaderFile>pngpriv.h</PrecompiledHeaderFile>
@@ -158,11 +100,12 @@
       <MinimalRebuild>false</MinimalRebuild>
       <DisableSpecificWarnings>4996;4127</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>$(ZLibSrcDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
       <Optimization>Full</Optimization>
       <ExceptionHandling>false</ExceptionHandling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalOptions>/arch:IA32 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -178,46 +121,10 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Library|Win32'">
-    <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>_NO_CRT_STDIO_INLINE;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
-      <PrecompiledHeaderFile>pngpriv.h</PrecompiledHeaderFile>
-      <BrowseInformation>true</BrowseInformation>
-      <CompileAs>CompileAsC</CompileAs>
-      <StringPooling>true</StringPooling>
-      <MinimalRebuild>false</MinimalRebuild>
-      <DisableSpecificWarnings>4996;4127</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ZLibSrcDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <TreatWarningAsError>false</TreatWarningAsError>
-      <Optimization>Full</Optimization>
-      <WholeProgramOptimization>true</WholeProgramOptimization>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <AdditionalOptions>/arch:IA32 %(AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-    </Link>
-    <Lib>
-      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
-    </Lib>
-  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\png.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Library|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Library|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\..\pngerror.c" />
     <ClCompile Include="..\..\..\pngget.c" />
@@ -235,10 +142,7 @@
     <ClCompile Include="..\..\..\pngwutil.c" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\..\scripts\pngwin.rc">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Library|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Library|Win32'">true</ExcludedFromBuild>
-    </ResourceCompile>
+    <ResourceCompile Include="..\..\..\scripts\pngwin.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

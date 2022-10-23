@@ -21,6 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <ProjectGuid>{EBDA67CA-4A23-4F22-BFBC-B8DBE0580D4F}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -67,8 +68,8 @@
     <_ProjectFileVersion>17.0.32819.101</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\Release\</OutDir>
-    <IntDir>.\Release\</IntDir>
+    <OutDir>$(SolutionDir)library\</OutDir>
+    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>.\Debug\</OutDir>

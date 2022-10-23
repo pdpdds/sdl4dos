@@ -1,0 +1,1 @@
+C:\github\sdl4dos\SDL_mixer-1.2.12\VisualC\native_midi\Release\native_midi.lib

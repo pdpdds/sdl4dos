@@ -14,6 +14,7 @@
     <VCProjectVersion>17.0</VCProjectVersion>
     <ProjectGuid>{81CE8DAF-EBB2-4761-8E45-B71ABCCA8C68}</ProjectGuid>
     <RootNamespace>SDL</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -47,8 +48,8 @@
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\Release\</OutDir>
-    <IntDir>.\Release\</IntDir>
+    <OutDir>$(SolutionDir)library\</OutDir>
+    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -111,13 +112,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader />
       <PrecompiledHeaderOutputFile>.\Release/SDL.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
-      <ObjectFileName>.\Release/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</AssemblerListingLocation>
+      <ObjectFileName>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</ObjectFileName>
+      <ProgramDataBaseFileName>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <CompileAs>Default</CompileAs>
       <AdditionalOptions>/arch:IA32 %(AdditionalOptions)</AdditionalOptions>
+      <DisableSpecificWarnings>4819;4996</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -126,15 +128,19 @@
     <Link>
       <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>Advapi32.lib;winmm.lib;dxguid.lib;kernel32.lib;msvcrt.lib;libcmt.lib;gdi32.lib;user32.lib</AdditionalDependencies>
-      <OutputFile>.\Release/SDL.dll</OutputFile>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <ProgramDatabaseFile>.\Release/SDL.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>.\Release/SDL.lib</ImportLibrary>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>$(SolutionDir)../../lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)library</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\audio\disk\SDL_diskaudio.c" />

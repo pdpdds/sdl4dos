@@ -22,6 +22,7 @@
     <VCProjectVersion>17.0</VCProjectVersion>
     <ProjectGuid>{2BD5534E-00E2-4BEA-AC96-D9A92EA24696}</ProjectGuid>
     <ProjectName>SDLimage</ProjectName>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -73,8 +74,8 @@
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\Release\</OutDir>
-    <IntDir>.\Release\</IntDir>
+    <OutDir>$(SolutionDir)library\</OutDir>
+    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -134,7 +135,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>external\include;$(SolutionDir)../../SDL-1.2.12\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>external\include;$(SolutionDir)SDL-1.2.12\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;LOAD_BMP;LOAD_LBM;LOAD_PCX;LOAD_PNG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -151,10 +152,10 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>sdl.lib;msvcrt.lib;Kernel32.lib;libcmt.lib;libpng15.lib;zlib.lib</AdditionalDependencies>
-      <ProgramDatabaseFile>.\Release/SDL_image.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>$(SolutionDir)../../lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)library</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
@@ -162,6 +163,10 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>.\Release/SDL_image.bsc</OutputFile>
     </Bscmake>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
