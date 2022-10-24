@@ -3,7 +3,7 @@ ms-dos compatable sdl 1.2 library project
 
 ## Feature
 * SDL Image Support(PNG)
-* SDL Mixer(WAV, MID)
+* SDL Mixer(WAV)
 
 ## Build
 * Visual Studio 2022 or Higher
