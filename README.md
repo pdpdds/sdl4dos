@@ -14,3 +14,4 @@ ms-dos compatable sdl 1.2 library project
 * 320 * 200 Resolution(High Resolution is very slow)
 
 ## Reference
+[HX DOS EXTENDER](https://github.com/Baron-von-Riedesel/HX)  
